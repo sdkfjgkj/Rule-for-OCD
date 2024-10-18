@@ -1,3 +1,21 @@
+# Rule for OCD
+
+> `OCD` 是强迫症的意思，Obsessive–compulsive disorder
+
+Stash 是 Clash 在 Apple 设备上的实现，其[文档](https://stash.wiki/rules/rule-set)说明: "不建议使用内含大量规则的 classical 规则集合，会显著提高 Stash 内存占用，降低规则匹配速度。"，"domain(-text) 和 ipcidr(-text) 两种类型的规则集合专门针对大量数据进行了优化，在规则条目较多时建议优先选择。"
+
+Stash 作为 GUI 客户端，个人猜想作者大概率没有闲工夫为内核做优化，如果猜想为真，那么使用 Clash 内核时，最佳实践是使用 domain 和 ipcidr 的 rule-set(text)，至少应避免使用 classical
+
+有人曾向 ios_rule_script 的作者 [blackmatrix7](https://github.com/blackmatrix7) 提出了[调整拆分阈值的请求](https://github.com/blackmatrix7/ios_rule_script/issues/569#issuecomment-1131664794)，blackmatrix7 考虑到最终用户可能会被太多的文件混淆，婉拒了
+
+Just do it.
+
+现在，每个 `<name>.list` 文件被拆分为 `<name>_OCD_Domain.txt`、`<name>_OCD_Domain.yaml`、`<name>_OCD_IP.txt` 和 `<name>_OCD_IP.yaml`
+
+例如 `Apple.list`，对应 `Apple_OCD_Domain.txt`、`Apple_OCD_Domain.yaml`、`Apple_OCD_IP.txt` 和 `Apple_OCD_IP.yaml`
+
+具体实现均在 `.github/workflows/convert_rules.yaml` 和 `script/convert_rules.sh`
+
 # Rules And Scripts
 
 ## 前言
