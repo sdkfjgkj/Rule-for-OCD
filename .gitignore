@@ -5,3 +5,5 @@ debug/
 script/magicjs/server/
 .DS_Store
 .idea
+subconverter_linux64.tar.gz
+subconverter/
