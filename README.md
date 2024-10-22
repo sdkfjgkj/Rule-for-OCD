@@ -8,13 +8,13 @@ Stash 作为 GUI 客户端，个人猜想作者大概率没有闲工夫为内核
 
 有人曾向 ios_rule_script 的作者 [blackmatrix7](https://github.com/blackmatrix7) 提出了[调整拆分阈值的请求](https://github.com/blackmatrix7/ios_rule_script/issues/569#issuecomment-1131664794)，blackmatrix7 考虑到最终用户可能会被太多的文件混淆，婉拒了
 
-Mihomo/Clash.Meta 有自创的 mrs 格式, [能够减少加载时硬件资源占用](https://github.com/MetaCubeX/mihomo/issues/1494#issuecomment-2328193689), 同时减少一半以上规则文件大小
+Mihomo/Clash.Meta 有自创的 mrs 格式，[能够减少加载时硬件资源占用](https://github.com/MetaCubeX/mihomo/issues/1494#issuecomment-2328193689)，同时减少一半以上规则文件大小
 
 Just do it.
 
-现在，每个 `<name>.list` 文件被拆分为 `<name>_OCD_Domain.mrs`、`<name>_OCD_IP.mrs`、`<name>_OCD_Domain.txt`、`<name>_OCD_IP.txt`, `<name>_OCD_Domain.yaml` 和 `<name>_OCD_IP.yaml`
+现在，每个 `<name>.list` 文件被拆分为 `<name>_OCD_Domain.mrs`、`<name>_OCD_IP.mrs`、`<name>_OCD_Domain.txt`、`<name>_OCD_IP.txt`、`<name>_OCD_Domain.yaml` 和 `<name>_OCD_IP.yaml`
 
-例如 `Apple.list`，对应 `Apple_OCD_Domain.mrs`、`Apple_OCD_IP.mrs`、`Apple_OCD_Domain.txt`、`Apple_OCD_IP.txt`, `Apple_OCD_Domain.yaml` 和 `Apple_OCD_IP.yaml`
+例如 `Apple.list`，对应 `Apple_OCD_Domain.mrs`、`Apple_OCD_IP.mrs`、`Apple_OCD_Domain.txt`、`Apple_OCD_IP.txt`、`Apple_OCD_Domain.yaml` 和 `Apple_OCD_IP.yaml`
 
 具体实现均在 `.github/workflows/convert_rules.yaml` 和 `script/convert_rules.sh`
 
