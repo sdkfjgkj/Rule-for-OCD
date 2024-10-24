@@ -1,0 +1,21 @@
+{
+  "files.exclude": {
+    "**/blank/": true,
+    "**/external/": true,
+    "**/icon/": true,
+    "**/rewrite/": true,
+    "**/script/": true,
+    "**/source/": true,
+    "**/rule/AdGuard/": true,
+    "**/rule/Loon/": true,
+    "**/rule/QuantumultX/": true,
+    "**/rule/Shadowrocket/": true,
+  },
+  "search.exclude": {
+    "#files.exclude#": true,
+  },
+  "files.watcherExclude": {
+    "#search.exclude#": true,
+  },
+  "search.collapseResults": "alwaysCollapse"
+}

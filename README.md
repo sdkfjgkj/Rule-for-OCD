@@ -18,6 +18,49 @@ Just do it.
 
 具体实现均在 `.github/workflows/convert_rules.yaml` 和 `script/convert_rules.sh`
 
+## 如何使用
+
+```yaml
+rules:
+  - RULE-SET,Lan_OCD_Domain,DIRECT
+  - RULE-SET,Lan_OCD_IP,DIRECT,no-resolve
+  - RULE-SET,Google_OCD_Domain,<你的首个 proxy-groups 名>
+  - RULE-SET,Google_OCD_IP,<同上>,no-resolve
+rule-providers:
+  Lan_OCD_Domain:
+    type: http
+    behavior: domain
+    url: >-
+      https://fastly.jsdelivr.net/gh/PeiYingYao/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_Domain.mrs
+    format: mrs
+    path: ./rule-set/Lan_OCD_Domain.mrs
+    interval: 43200 # 更新时间, 单位为秒
+  Lan_OCD_IP:
+    type: http
+    behavior: ipcidr
+    url: >-
+      https://fastly.jsdelivr.net/gh/PeiYingYao/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_IP.mrs
+    format: mrs
+    path: ./rule-set/Lan_OCD_IP.mrs
+    interval: 43200
+  Google_OCD_Domain:
+    type: http
+    behavior: domain
+    url: >-
+      https://fastly.jsdelivr.net/gh/PeiYingYao/Rule-for-OCD@master/rule/Clash/Google/Google_OCD_Domain.mrs
+    format: mrs
+    path: ./rule-set/Google_OCD_Domain.mrs
+    interval: 43200
+  Google_OCD_IP:
+    type: http
+    behavior: ipcidr
+    url: >-
+      https://fastly.jsdelivr.net/gh/PeiYingYao/Rule-for-OCD@master/rule/Clash/Google/Google_OCD_IP.mrs
+    format: mrs
+    path: ./rule-set/Google_OCD_IP.mrs
+    interval: 43200
+```
+
 # Rules And Scripts
 
 ## 前言
