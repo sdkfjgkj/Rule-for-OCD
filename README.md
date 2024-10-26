@@ -6,15 +6,15 @@ Stash 是 Clash 在 Apple 设备上的实现，其[文档](https://stash.wiki/ru
 
 Stash 作为 GUI 客户端，个人猜想作者大概率没有闲工夫为内核做优化，如果猜想为真，那么使用 Clash 内核时，最佳实践是使用 domain 和 ipcidr 的 rule-set(text)，至少应避免使用 classical
 
-有人曾向 ios_rule_script 的作者 [blackmatrix7](https://github.com/blackmatrix7) 提出了[调整拆分阈值的请求](https://github.com/blackmatrix7/ios_rule_script/issues/569#issuecomment-1131664794)，blackmatrix7 考虑到最终用户可能会被太多的文件混淆，婉拒了
+有人曾向 ios_rule_script 的作者 blackmatrix7 提出了[调整拆分阈值的请求](https://github.com/blackmatrix7/ios_rule_script/issues/569#issuecomment-1131664794)，blackmatrix7 考虑到最终用户可能会被太多的文件混淆，婉拒了
 
-Mihomo/Clash.Meta 有自创的 mrs 格式，[能够减少加载时硬件资源占用](https://github.com/MetaCubeX/mihomo/issues/1494#issuecomment-2328193689)，同时减少一半以上规则文件大小
+Mihomo/Clash.Meta 有自创的 mrs 格式，[能够减少加载时硬件资源占用](https://github.com/MetaCubeX/mihomo/issues/1494#issuecomment-2328193689)，也能减少规则文件存储大小
 
 Just do it.
 
 现在，每个 `<name>.list` 文件被拆分为 `<name>_OCD_Domain.mrs`、`<name>_OCD_IP.mrs`、`<name>_OCD_Domain.txt`、`<name>_OCD_IP.txt`、`<name>_OCD_Domain.yaml` 和 `<name>_OCD_IP.yaml`
 
-例如 `Apple.list`，对应 `Apple_OCD_Domain.mrs`、`Apple_OCD_IP.mrs`、`Apple_OCD_Domain.txt`、`Apple_OCD_IP.txt`、`Apple_OCD_Domain.yaml` 和 `Apple_OCD_IP.yaml`
+例如 `Apple.list`，对应 `Apple_OCD_Domain.mrs`、`Apple_OCD_IP.mrs`、`Apple_OCD_Domain.txt`、`Apple_OCD_IP.txt`、`Apple_OCD_Domain.yaml` 和 `Apple_OCD_IP.yaml`，链接：[https://github.com/peiyingyao/Rule-for-OCD/tree/master/rule/Clash/Apple](https://github.com/peiyingyao/Rule-for-OCD/tree/master/rule/Clash/Apple)
 
 具体实现均在 `.github/workflows/convert_rules.yaml` 和 `script/convert_rules.sh`
 
@@ -25,21 +25,23 @@ rules:
   - RULE-SET,Lan_OCD_Domain,DIRECT
   - RULE-SET,Lan_OCD_IP,DIRECT,no-resolve
   - RULE-SET,Google_OCD_Domain,<你的首个 proxy-groups 名>
-  - RULE-SET,Google_OCD_IP,<同上>,no-resolve
+  - RULE-SET,Google_OCD_IP,<你的首个 proxy-groups 名>,no-resolve
 rule-providers:
   Lan_OCD_Domain:
     type: http
     behavior: domain
     url: >-
-      https://fastly.jsdelivr.net/gh/PeiYingYao/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_Domain.mrs
+      https://fastly.jsdelivr.net/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_Domain.mrs
+    # fastly.jsdelivr.net 可直连，但内容更新有 24 小时延迟，介意可使用:
+      # https://raw.githubusercontent.com/peiyingyao/Rule-for-OCD/refs/heads/master/rule/Clash/Lan/Lan_OCD_Domain.mrs
     format: mrs
     path: ./rule-set/Lan_OCD_Domain.mrs
-    interval: 43200 # 更新时间, 单位为秒
+    interval: 43200 # 更新时间，单位为秒
   Lan_OCD_IP:
     type: http
     behavior: ipcidr
     url: >-
-      https://fastly.jsdelivr.net/gh/PeiYingYao/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_IP.mrs
+      https://fastly.jsdelivr.net/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_IP.mrs
     format: mrs
     path: ./rule-set/Lan_OCD_IP.mrs
     interval: 43200
@@ -47,7 +49,7 @@ rule-providers:
     type: http
     behavior: domain
     url: >-
-      https://fastly.jsdelivr.net/gh/PeiYingYao/Rule-for-OCD@master/rule/Clash/Google/Google_OCD_Domain.mrs
+      https://fastly.jsdelivr.net/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Google/Google_OCD_Domain.mrs
     format: mrs
     path: ./rule-set/Google_OCD_Domain.mrs
     interval: 43200
@@ -55,7 +57,7 @@ rule-providers:
     type: http
     behavior: ipcidr
     url: >-
-      https://fastly.jsdelivr.net/gh/PeiYingYao/Rule-for-OCD@master/rule/Clash/Google/Google_OCD_IP.mrs
+      https://fastly.jsdelivr.net/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Google/Google_OCD_IP.mrs
     format: mrs
     path: ./rule-set/Google_OCD_IP.mrs
     interval: 43200
