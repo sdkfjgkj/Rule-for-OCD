@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   # 每天 2:32 (UTC+8) 触发一次
   schedule:
-    - cron: "32 18 * * *"
+    - cron: '32 18 * * *'
   push:
     branches:
       - master
@@ -30,10 +30,15 @@ jobs:
           git remote add upstream https://github.com/blackmatrix7/ios_rule_script.git
           git fetch --depth=1 upstream
           git checkout master
-          git merge upstream/master --strategy-option ours --allow-unrelated-histories
+          mkdir ./backup/
+          cp -f .gitignore README.md .github/workflows/convert_rules.yaml script/convert_rules.sh ./backup/
+          git merge upstream/master --strategy-option theirs --allow-unrelated-histories --no-edit
+          cp -f ./backup/.gitignore .gitignore
+          cp -f ./backup/README.md README.md
+          cp -f ./backup/convert_rules.yaml .github/workflows/convert_rules.yaml
+          cp -f ./backup/convert_rules.sh script/convert_rules.sh
 
-
-      # 运行 subconverter, 其规则转换功能可以将 .list 转为 .yaml
+      # 运行 subconverter, 将 .list 转为 .yaml
       - name: Run subconverter
         run: |
           curl -s https://api.github.com/repos/tindy2013/subconverter/releases \
@@ -45,7 +50,7 @@ jobs:
           ./subconverter/subconverter &
           python3 -m http.server 56290 --bind 127.0.0.1 --directory './rule/' &
 
-      # 运行 mihomo, 其规则转换功能可以将 .yaml/.txt 转为 .mrs
+      # 运行 mihomo, 将 .txt 转为 .mrs
       - name: Run mihomo
         run: |
           curl -s https://api.github.com/repos/MetaCubeX/mihomo/releases \
