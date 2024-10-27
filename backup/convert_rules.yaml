@@ -30,7 +30,7 @@ jobs:
           git remote add upstream https://github.com/blackmatrix7/ios_rule_script.git
           git fetch --depth=1 upstream
           git checkout master
-          mkdir ./backup/
+          mkdir -p ./backup/
           cp -f .gitignore README.md .github/workflows/convert_rules.yaml script/convert_rules.sh ./backup/
           git merge upstream/master --strategy-option theirs --allow-unrelated-histories --no-edit
           cp -f ./backup/.gitignore .gitignore
