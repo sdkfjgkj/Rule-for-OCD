@@ -46,6 +46,7 @@ ryjer.com
 seedpeer.net
 serpb.vpsburti.com
 sparkle.ghostchuservices.top
+t.overflow.biz
 taciturnshadow.spb.ru
 tk.greedland.net
 tk2v6.trackerservers.com
@@ -54,6 +55,7 @@ torrentsmd.com
 tr.burnabyhighstar.com
 tr.kxmp.cf
 tr1.aag.moe
+tr4ck3r.duckdns.org
 trackarr.org
 trackerudp.gbitt.info
 trackerzhuqiy.dgj055.icu
@@ -92,10 +94,11 @@ tracker.renfei.net
 tracker.skyts.net
 tracker.srv00.com
 tracker.tamersunion.org
-tracker.theoks.net
 tracker.tinyvps.com
 tracker.torrent.eu.org
+tracker.torrustdemo.com
 tracker.tryhackx.org
+tracker.uraniumhexafluori.de
 tracker.waaa.moe
 tracker.xor.st
 tracker.yemekyedim.com
